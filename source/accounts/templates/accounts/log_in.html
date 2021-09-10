@@ -1,0 +1,45 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+
+    <h4>{% trans 'Log in' %}</h4>
+
+    <form method="post">
+
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <button class="btn btn-primary">{% trans 'Log in' %}</button>
+
+    </form>
+
+    <hr>
+
+    <ul>
+        <li>
+            <a href="{% url 'accounts:restore_password' %}">{% trans 'Forgot your password?' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:remind_username' %}">{% trans 'Forgot your username?' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:resend_activation_code' %}">{% trans 'Resend an activation code' %}</a>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+            <button class="btn btn-danger mb-2">
+                <a href="{% url 'social:begin' 'google-oauth2' %}" style="color:black;">Login with GOOGLE</a>
+            </button>
+            <button class="btn btn-primary mb-2">
+                <a href="{% url 'social:begin' 'facebook' %}" style="color:black;">Login with Facebook
+                </a>
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
